@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root {
+  --bg-0: #070813;
+  --bg-1: #0b0e2a;
+  --bg-card: rgba(255, 255, 255, 0.06);
+  --bg-card-hover: rgba(255, 255, 255, 0.10);
+  --ink: rgba(255, 255, 255, 0.92);
+  --ink-2: rgba(255, 255, 255, 0.68);
+  --ink-3: rgba(255, 255, 255, 0.44);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-2: rgba(255, 255, 255, 0.06);
+  --glass: rgba(255, 255, 255, 0.08);
+  --shadow: rgba(0, 0, 0, 0.35);
+  --primary: #66e3ff;
+  --secondary: #ff4fd8;
+  --accent: #ffd36e;
+  --danger: #ff6b6b;
+  --success: #51cf66;
+
+  --orb-a: rgba(102, 227, 255, 0.9);
+  --orb-b: rgba(255, 79, 216, 0.85);
+  --orb-c: rgba(255, 211, 110, 0.85);
+  --grad-a: rgba(102, 227, 255, 0.16);
+  --grad-b: rgba(255, 79, 216, 0.14);
+  --grad-c: rgba(255, 211, 110, 0.12);
+}
+
+[data-theme="light"] {
+  --bg-0: #f0f4f8;
+  --bg-1: #dbe4ef;
+  --bg-card: rgba(255, 255, 255, 0.72);
+  --bg-card-hover: rgba(255, 255, 255, 0.88);
+  --ink: rgba(15, 23, 42, 0.92);
+  --ink-2: rgba(15, 23, 42, 0.64);
+  --ink-3: rgba(15, 23, 42, 0.40);
+  --border: rgba(15, 23, 42, 0.10);
+  --border-2: rgba(15, 23, 42, 0.05);
+  --glass: rgba(255, 255, 255, 0.6);
+  --shadow: rgba(0, 0, 0, 0.08);
+  --primary: #0891b2;
+  --secondary: #db2777;
+  --accent: #d97706;
+  --danger: #e03131;
+  --success: #2f9e44;
+
+  --orb-a: rgba(8, 145, 178, 0.25);
+  --orb-b: rgba(219, 39, 119, 0.20);
+  --orb-c: rgba(217, 119, 6, 0.20);
+  --grad-a: rgba(8, 145, 178, 0.08);
+  --grad-b: rgba(219, 39, 119, 0.06);
+  --grad-c: rgba(217, 119, 6, 0.06);
+}
+
+/* Time-of-day ambient overrides (dark only) */
+[data-theme="dark"][data-period="morning"] {
+  --orb-a: rgba(255, 183, 77, 0.9);
+  --orb-b: rgba(255, 138, 101, 0.85);
+  --orb-c: rgba(255, 236, 179, 0.8);
+  --grad-a: rgba(255, 183, 77, 0.16);
+  --grad-b: rgba(255, 138, 101, 0.14);
+  --grad-c: rgba(255, 236, 179, 0.10);
+  --primary: #ffb74d;
+  --secondary: #ff8a65;
+  --accent: #fff176;
+}
+
+[data-theme="dark"][data-period="afternoon"] {
+  --orb-a: rgba(102, 227, 255, 0.9);
+  --orb-b: rgba(100, 181, 246, 0.85);
+  --orb-c: rgba(129, 212, 250, 0.8);
+  --grad-a: rgba(102, 227, 255, 0.16);
+  --grad-b: rgba(100, 181, 246, 0.14);
+  --grad-c: rgba(129, 212, 250, 0.10);
+}
+
+[data-theme="dark"][data-period="evening"] {
+  --orb-a: rgba(206, 147, 216, 0.9);
+  --orb-b: rgba(255, 79, 216, 0.85);
+  --orb-c: rgba(149, 117, 205, 0.8);
+  --grad-a: rgba(206, 147, 216, 0.14);
+  --grad-b: rgba(255, 79, 216, 0.12);
+  --grad-c: rgba(149, 117, 205, 0.10);
+}
+
+[data-theme="dark"][data-period="night"] {
+  --orb-a: rgba(92, 107, 192, 0.85);
+  --orb-b: rgba(121, 134, 203, 0.75);
+  --orb-c: rgba(63, 81, 181, 0.70);
+  --grad-a: rgba(92, 107, 192, 0.14);
+  --grad-b: rgba(121, 134, 203, 0.10);
+  --grad-c: rgba(63, 81, 181, 0.08);
+  --primary: #7986cb;
+  --secondary: #9575cd;
+  --accent: #5c6bc0;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 800px at 20% 10%, var(--grad-a), transparent 55%),
+    radial-gradient(1100px 900px at 80% 30%, var(--grad-b), transparent 58%),
+    radial-gradient(900px 700px at 60% 90%, var(--grad-c), transparent 55%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1));
+  color: var(--ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background 0.6s ease, color 0.3s ease;
+}
+
+/* Utility classes for theme colors */
+.text-ink { color: var(--ink); }
+.text-ink-2 { color: var(--ink-2); }
+.text-ink-3 { color: var(--ink-3); }
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-accent { color: var(--accent); }
+.text-danger { color: var(--danger); }
+.text-success { color: var(--success); }
+.bg-card { background: var(--bg-card); }
+.bg-card-hover { background: var(--bg-card-hover); }
+.border-theme { border-color: var(--border); }
+.border-theme-2 { border-color: var(--border-2); }
+.shadow-theme { box-shadow: 0 30px 90px var(--shadow); }
+
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-hover:hover {
+  background: var(--bg-card-hover);
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 var(--primary-glow, rgba(102, 227, 255, 0.4)); }
+  70% { box-shadow: 0 0 0 12px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes blink {
+  0%, 48% { opacity: 1; }
+  52%, 100% { opacity: 0.25; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes drift-a {
+  0%, 100% { transform: translate(-6px, 6px) scale(1); }
+  50% { transform: translate(18px, -10px) scale(1.04); }
+}
+
+@keyframes drift-b {
+  0%, 100% { transform: translate(6px, -8px) scale(1); }
+  50% { transform: translate(-14px, 10px) scale(1.03); }
+}
+
+@keyframes drift-c {
+  0%, 100% { transform: translate(0px, 8px) scale(1); }
+  50% { transform: translate(12px, -10px) scale(1.03); }
+}
+
+.animate-fade-in { animation: fade-in 0.5s ease both; }
+.animate-fade-in-up { animation: fade-in-up 0.7s cubic-bezier(.2,.9,.2,1) both; }
+.animate-pulse-ring { animation: pulse-ring 1.4s ease-out infinite; }
+.animate-blink { animation: blink 1s steps(2, jump-none) infinite; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: var(--bg-0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
